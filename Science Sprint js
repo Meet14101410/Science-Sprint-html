@@ -1,0 +1,40 @@
+const quiz = [
+  {
+    q: "What is the chemical symbol for Water?",
+    o: ["H2O", "O2", "CO2"],
+    a: "H2O"
+  },
+  {
+    q: "Which gas do plants absorb?",
+    o: ["Oxygen", "Carbon Dioxide", "Nitrogen"],
+    a: "Carbon Dioxide"
+  },
+  {
+    q: "What is the pH of pure water?",
+    o: ["7", "5", "9"],
+    a: "7"
+  }
+];
+
+let i = 0, score = 0;
+
+function loadQuiz() {
+  question.textContent = quiz[i].q;
+  options.innerHTML = "";
+  quiz[i].o.forEach(x => {
+    let b = document.createElement("button");
+    b.textContent = x;
+    b.onclick = () => {
+      if (x === quiz[i].a) score++;
+      score.innerText = "Score: " + score;
+    };
+    options.appendChild(b);
+  });
+}
+
+function nextQuestion() {
+  i = (i + 1) % quiz.length;
+  loadQuiz();
+}
+
+loadQuiz();
